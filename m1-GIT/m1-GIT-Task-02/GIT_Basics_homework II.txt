@@ -1,0 +1,77 @@
+acaeb3c HEAD@{0}: merge develop: Fast-forward
+1ae6db4 HEAD@{1}: checkout: moving from develop to main
+acaeb3c HEAD@{2}: merge first: Fast-forward
+1e1eb77 HEAD@{3}: checkout: moving from first to develop
+acaeb3c HEAD@{4}: rebase (finish): returning to refs/heads/first
+acaeb3c HEAD@{5}: rebase (squash): Squash commit
+aacbafe HEAD@{6}: rebase (squash): # Это объединение 3 коммитов.
+15620b5 HEAD@{7}: rebase (squash): # Это объединение 2 коммитов.
+af2eac3 HEAD@{8}: rebase (pick): Create new_first_file1
+1e1eb77 HEAD@{9}: rebase (start): checkout develop
+815f8f5 HEAD@{10}: checkout: moving from develop to first
+1e1eb77 HEAD@{11}: merge second: Fast-forward
+d2ac284 HEAD@{12}: checkout: moving from second to develop
+1e1eb77 HEAD@{13}: rebase (finish): returning to refs/heads/second
+1e1eb77 HEAD@{14}: commit (amend): Change the content of the second commit
+dd6f366 HEAD@{15}: commit (amend): Coommit with two changed files
+5c61407 HEAD@{16}: rebase (edit): Coommit with two changed files
+8282f79 HEAD@{17}: commit (amend): Split commit to two new_second_files
+b43d827 HEAD@{18}: reset: moving to b43d827
+6523700 HEAD@{19}: reset: moving to HEAD~1
+833df7c HEAD@{20}: reset: moving to 833df7c
+d2ac284 HEAD@{21}: reset: moving to HEAD~
+b43d827 HEAD@{22}: rebase (edit): Coommit with two changed files
+d2ac284 HEAD@{23}: rebase (start): checkout develop
+e225cac HEAD@{24}: commit: Coommit with two changed files
+833df7c HEAD@{25}: commit: Coommit with two changed files
+6523700 HEAD@{26}: checkout: moving from first to second
+815f8f5 HEAD@{27}: commit: Create new_first_file5
+2873009 HEAD@{28}: commit: Create new_first_file4
+4e0e999 HEAD@{29}: commit: Create new_first_file3
+f69c430 HEAD@{30}: commit: Create new_first_file2
+790d72a HEAD@{31}: commit: Create new_first_file1
+6523700 HEAD@{32}: checkout: moving from develop to first
+d2ac284 HEAD@{33}: commit: Unchanged new_develop_file3.txt
+4289fb5 HEAD@{34}: commit: Changed new_develop_file2.txt
+b094c3b HEAD@{35}: commit: Changed new_develop_files1.txt
+6523700 HEAD@{36}: commit: Create a file.txt in task2
+1ae6db4 HEAD@{37}: checkout: moving from main to develop
+1ae6db4 HEAD@{38}: merge develop: Fast-forward
+da2c505 HEAD@{39}: checkout: moving from develop to main
+1ae6db4 HEAD@{40}: rebase (finish): returning to refs/heads/develop
+1ae6db4 HEAD@{41}: rebase (start): checkout styles2
+50a0d2a HEAD@{42}: checkout: moving from styles2 to develop
+1ae6db4 HEAD@{43}: rebase (finish): returning to refs/heads/styles2
+1ae6db4 HEAD@{44}: rebase (continue): Add styles2.css in index.html file
+e1e1073 HEAD@{45}: rebase (pick): Add styles2.css in styles folder
+50a0d2a HEAD@{46}: rebase (start): checkout develop
+e811e26 HEAD@{47}: checkout: moving from develop to styles2
+50a0d2a HEAD@{48}: rebase (finish): returning to refs/heads/develop
+50a0d2a HEAD@{49}: rebase (start): checkout images2
+da2c505 HEAD@{50}: checkout: moving from images2 to develop
+50a0d2a HEAD@{51}: checkout: moving from develop to images2
+da2c505 HEAD@{52}: checkout: moving from styles2 to develop
+e811e26 HEAD@{53}: commit: Add styles2.css in index.html file
+8b4e49c HEAD@{54}: commit: Add styles2.css in styles folder
+da2c505 HEAD@{55}: checkout: moving from develop to styles2
+da2c505 HEAD@{56}: checkout: moving from images2 to develop
+50a0d2a HEAD@{57}: commit: Change index.html with source of images2
+1474698 HEAD@{58}: commit: Add new folder with images2
+da2c505 HEAD@{59}: checkout: moving from images to images2
+c85122a HEAD@{60}: checkout: moving from develop to images
+da2c505 HEAD@{61}: checkout: moving from main to develop
+da2c505 HEAD@{62}: merge develop: Fast-forward
+6632f49 HEAD@{63}: checkout: moving from develop to main
+da2c505 HEAD@{64}: commit (merge): Merge branch 'styles' into develop
+c85122a HEAD@{65}: merge images: Fast-forward
+2e77017 HEAD@{66}: checkout: moving from styles to develop
+7426176 HEAD@{67}: commit: Change index.html om styles branch
+7d35a26 HEAD@{68}: commit: Adding styles file
+2e77017 HEAD@{69}: checkout: moving from develop to styles
+2e77017 HEAD@{70}: checkout: moving from images to develop
+c85122a HEAD@{71}: commit: Change in index.html file
+fa01cb7 HEAD@{72}: commit: Adding new image in images folder
+2e77017 HEAD@{73}: checkout: moving from develop to images
+2e77017 HEAD@{74}: commit: Create index.html file
+6632f49 HEAD@{75}: checkout: moving from main to develop
+6632f49 HEAD@{76}: commit (initial): Init commit
