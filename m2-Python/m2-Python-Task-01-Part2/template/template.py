@@ -1,12 +1,11 @@
-import string
 import random
 import re
 import logging
-from extended_template import extended_template
-from set import set_generator
+from set.set import set_generator
+import config as cfg
 
 
-def handle_escape(match):
+def handle_custom_set(match: re.Match) -> str:
     """
     Handle custom characters in the template.
 
@@ -20,7 +19,7 @@ def handle_escape(match):
     return custom_set
 
 
-def check_template(template):
+def check_template(template: str) -> str:
     """
     Generate a password based on a template.
 
@@ -30,12 +29,6 @@ def check_template(template):
 
     # Initialize password
     password = ''
-
-    # Define character sets
-    digit_set = string.digits
-    lower_set = string.ascii_lowercase
-    upper_set = string.ascii_uppercase
-    punctuation_set = ',.;:'
 
     # Compile regex patterns
     custom_set_pattern = re.compile(r'\[(.*?)\]')
@@ -50,11 +43,11 @@ def check_template(template):
             # Find all substrings inside square brackets and join them into a single string
             substrings = set_generator(''.join(re.findall(r'\[(.*?)\]', template)))
             # Use random.choices to select characters from the combined substrings
-            pattern = ''.join(random.choices(substrings, k=repeat_count))
+            pattern = ''.join(random.choices(substrings, k=repeat_count - 1))
 
         else:
             previous_char = template[match.start() - 1]
-            for _ in range(repeat_count - 1):
+            for _ in range(repeat_count):
                 pattern += previous_char
             logging.debug(f"Multiply {previous_char} {repeat_count} times")
         return pattern
@@ -63,11 +56,11 @@ def check_template(template):
     if re.findall(repeat_pattern, template):
         temp = repeat_placeholders(repeat_pattern.search(template))
         password += temp
-        template = ''.join(char for char in temp if char not in temp)
+        template = ''.join(char for char in temp if char not in template)
     elif re.findall(custom_set_pattern, template):
-        temp = custom_set_pattern.sub(handle_escape, template)
+        temp = custom_set_pattern.sub(handle_custom_set, template)
         password += temp
-        template = ''.join(char for char in template if char not in temp)
+        template = ''.join(char for char in temp if char not in template)
 
     slash_pattern = False
     # Generate the password based on the template
@@ -77,26 +70,12 @@ def check_template(template):
             logging.debug(f" '{char}' Adding character to template."
                           f"Be careful, using custom char in password can reduce password strength")
             slash_pattern = False
-            continue
-        if char == 'd':
-            password += random.choice(digit_set)
-            logging.debug(f"{char} Adding digit char to template")
-        elif char == 'l':
-            password += random.choice(lower_set)
-            logging.debug(f"{char} Adding lower_case char to template ")
-        elif char == 'L':
-            password += random.choice(lower_set + upper_set)
-            logging.debug(f"{char} Adding Mixed-Case letter  to template ")
-        elif char == 'u':
-            password += random.choice(upper_set)
-            logging.debug(f"{char} Adding Upper_case char to template ")
-        elif char == 'p':
-            password += random.choice(punctuation_set)
-            logging.debug(f"{char} Using punctuation char")
         elif char == '\\':
-            logging.debug(f"Using \\ in template")
             slash_pattern = True
+            continue
+        elif char in cfg.char_set:
+            password += random.choice(cfg.char_set[char])
+            logging.debug(f"Add char {char} to password")
         else:
-            password += extended_template(char)
-
+            logging.warning(f"Undefined character in template: {char}")
     return password

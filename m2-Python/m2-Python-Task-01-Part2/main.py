@@ -3,9 +3,9 @@ import random
 import string
 import logging
 
-from template import check_template
-from set import set_generator
-from setup_loggin import setup_logging
+from template.template import check_template
+from set.set import set_generator
+from loggin.setup_loggin import setup_logging
 
 # Error to handle argument mistake
 ERROR_BAD_OPTION = 1
@@ -17,7 +17,7 @@ FILE_NOT_FOUND = 2
 PERMISSION_DENIED = 157
 
 
-def generate_password(length, template=None, character_set=None):
+def generate_password(length: int, template: str = None, character_set: str = None) -> str:
     """
     Generate a password based on the provided parameters.
 
@@ -84,11 +84,13 @@ def main():
     )
 
     parser.add_argument('-n', '--length', type=int, help='Set length of password')
-    parser.add_argument('-f', '--file', help='Getting list of patterns from file and generate for each random password')
+    parser.add_argument('-f', '--file', help='Getting list of patterns from file'
+                                             ' and generate for each random password')
     parser.add_argument('-t', '--template', help='Set template for generate passwords')
     parser.add_argument('-S', '--set', help='Character set')
     parser.add_argument('-c', '--count', type=int, default=1, help='Number of passwords')
-    parser.add_argument('-v', '--verbose', action='count', default=0, help='Verbose mode (-v |-vv |-vvv )')
+    parser.add_argument('-v', '--verbose', action='count', default=0,
+                        help='Verbose mode (-v |-vv |-vvv )')
     parser.add_argument('-l', '--log', help='Log file path')
     args = parser.parse_args()
 
