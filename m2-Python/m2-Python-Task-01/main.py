@@ -3,9 +3,19 @@ import random
 import string
 import logging
 
-from template import check_template
-from set import set_generator
-from setup_loggin import setup_logging
+from template.template import check_template
+from set.set import set_generator
+from loggin.setup_loggin import setup_logging
+
+# Error to handle argument mistake
+ERROR_BAD_OPTION = 1
+
+# Error to handle FILE_NOT_FOUND
+FILE_NOT_FOUND = 2
+
+# Error to handle PERMISSION_DENIED
+PERMISSION_DENIED = 157
+
 
 def generate_password(length, template=None, character_set=None):
     """
@@ -16,6 +26,7 @@ def generate_password(length, template=None, character_set=None):
     :param character_set: Custom character set to use for password generation.
     :return: Generated password as a string.
     """
+
     password = ''
 
     if length is None:
@@ -32,19 +43,19 @@ def generate_password(length, template=None, character_set=None):
 
     # If a character set is provided, use it to generate the password
     if character_set:
-        password = set_generator(character_set, length)
-
+        generated_set = set_generator(character_set)
+        password = ''.join(random.choices(generated_set, k=length))
     # If a template is provided, use it to generate the password
     if template:
         password = check_template(template)
 
     return password
 
+
 def main():
     """
     Main function to handle command-line arguments and generate passwords.
     """
-    # Define the epilog content
 
     parser = argparse.ArgumentParser(
         description=r"""
@@ -64,8 +75,9 @@ def main():
         \           Escape (Fixed Char)        Use following character as is.
         {n}         Escape (Repeat)            Repeat the previous placeholder n times.
         [...]       Custom Char Set            Define a custom character set
-        
-        set option supported placeholders: Digit,Lower-Case Letter, Mixed-Case Letter, Upper-Case Letter, Punctuation, Escape (Fixed Char)
+
+        set option supported placeholders: Digit,Lower-Case Letter,
+        Mixed-Case Letter, Upper-Case Letter, Punctuation, Escape (Fixed Char)
         """,
         formatter_class=argparse.RawTextHelpFormatter
     )
@@ -76,37 +88,36 @@ def main():
     parser.add_argument('-S', '--set', help='Character set')
     parser.add_argument('-c', '--count', type=int, default=1, help='Number of passwords')
     parser.add_argument('-v', '--verbose', action='count', default=0, help='Verbose mode (-v |-vv |-vvv )')
+    parser.add_argument('-l', '--log', help='Log file path')
     args = parser.parse_args()
 
     # Check for conflicting options
     if args.template and args.set:
         logging.error('Using -s and -t options. Please choose only one')
-        exit(1)
+        exit(ERROR_BAD_OPTION)
 
     if args.set and args.file:
         logging.error('Using -s and -f options. Please choose only')
-        exit(1)
+        exit(ERROR_BAD_OPTION)
 
     # Set up logging based on verbosity level
-    if args.verbose:
-        setup_logging(args.verbose)
+    if args.verbose or args.log:
+        setup_logging(args.verbose, args.log)
         logging.debug('Using verbose mode')
+        if args.log:
+            logging.debug(f'Logging to file: {args.log}')
 
     # Generate passwords based template
     if args.template:
         for _ in range(args.count):
             if args.length:
                 logging.error(f'Using -n option with -t')
-                exit(1)
+                exit(ERROR_BAD_OPTION)
             logging.debug('Using template mod')
-            try:
-                password = generate_password(len(args.template), template=args.template)
-                logging.info(f'Generated password length: {len(password)}')
-                # Вместо password выводим звездочки
-                logging.info(f'Generated password from template: {"*" * len(password)}')
-                print(password)
-            except Exception:
-                logging.error(f'Bad argument provided. Please use --help for more information')
+            password = generate_password(len(args.template), template=args.template)
+            logging.info(f'Generated password length: {len(password)}')
+            logging.info(f'Generated password from template: {"*" * len(password)}')
+            print(password)
 
     # Generate password based on length
     if args.length:
@@ -121,6 +132,7 @@ def main():
                 print(password)
             except ValueError:
                 logging.error(f'Invalid argument : {args.length}')
+                exit(ERROR_BAD_OPTION)
 
     # Generate password based on set
     if args.set:
@@ -128,7 +140,6 @@ def main():
             logging.debug('Using set mode')
             password = generate_password(length=args.length, character_set=args.set)
             logging.info(f'Generated password length: {len(password)}')
-            # Вместо password выводим звездочки
             logging.info(f'Generated password are: {"*" * len(password)}')
             print(password)
 
@@ -144,8 +155,11 @@ def main():
                 print(password)
         except FileNotFoundError:
             logging.error(f'File {args.file} does not exist')
+            exit(FILE_NOT_FOUND)
         except PermissionError:
             logging.error(f'Permission denied for file: {args.file}')
+            exit(PERMISSION_DENIED)
+
 
 if __name__ == '__main__':
     main()
