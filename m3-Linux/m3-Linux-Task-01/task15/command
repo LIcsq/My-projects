@@ -1,0 +1,1 @@
+users | xargs -n 1 | uniq

@@ -1,0 +1,1 @@
+/bash-task/task9/link_env/dir1/file1.txt

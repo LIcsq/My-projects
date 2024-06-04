@@ -1,0 +1,1 @@
+inode=$(stat --format %i link_env/dir1/file1.txt) | find / -xdev -inum "$inode" 

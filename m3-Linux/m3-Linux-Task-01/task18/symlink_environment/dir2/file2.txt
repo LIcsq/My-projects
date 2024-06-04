@@ -1,0 +1,1 @@
+This is a test file: ./symlink_environment/dir2/file2.txt

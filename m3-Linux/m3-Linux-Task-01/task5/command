@@ -1,0 +1,1 @@
+find script_environment/ -type f -name "*.sh" -exec grep -ro file {} \;

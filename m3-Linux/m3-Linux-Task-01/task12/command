@@ -1,0 +1,1 @@
+find permissions_env/ -type f -name *dir* -exec chmod 644 {} \; 

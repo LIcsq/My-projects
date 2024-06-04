@@ -1,0 +1,1 @@
+find  -L symlink_env/ -samefile symlink_env/dir1/file1.txt

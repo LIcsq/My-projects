@@ -1,0 +1,1 @@
+/bash-task/task7/symlink_env/dir1/subdir1/file2.txt

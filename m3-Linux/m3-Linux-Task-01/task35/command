@@ -1,0 +1,9 @@
+find example_environment/ -type f -name '*.jpeg' | while read -r jpeg; do
+  base=$(basename "$jpeg" .jpeg)
+  txt=$(find example_environment/ -type f -name "$base.txt")
+  if [ -z "$txt" ]; then
+    echo "Deleting $jpeg"
+    rm -rf "$jpeg"
+  fi
+done
+

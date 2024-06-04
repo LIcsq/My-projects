@@ -1,0 +1,1 @@
+find ./env_with_symlinks -type l -exec sh -c 'for link; do target=$(readlink "$link"); if [ "${target#/}" != "$target" ]; then ln -sf "$(realpath --relative-to="$(dirname "$link")" "$target")" "$link"; fi; done' sh {} +
