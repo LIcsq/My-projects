@@ -2,7 +2,7 @@
 
 # Define the environment setup function
 setup_environment() {
-    local base_dir="/bash-task/task7/symlink_env"
+    local base_dir="$(pwd)/symlink_env"
 
     # Create the base directory
     mkdir -p "$base_dir"
@@ -53,7 +53,7 @@ setup_environment() {
 
 # Define the environment cleanup function
 cleanup_environment() {
-    local base_dir="./symlink_env"
+    local base_dir="$(pwd)/symlink_env"
 
     if [[ -d "$base_dir" ]]; then
         rm -rf "$base_dir"
@@ -70,7 +70,7 @@ main() {
     elif [[ "$1" == "cleanup" ]]; then
         cleanup_environment
     else
-        printf "Usage: $0 {setup|cleanup}\n"
+        printf "Usage: %s {setup|cleanup}\n" "$0"
         return 1
     fi
 }

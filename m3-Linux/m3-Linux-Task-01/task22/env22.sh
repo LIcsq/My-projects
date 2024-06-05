@@ -2,7 +2,7 @@
 
 # Define the environment setup function
 setup_environment() {
-    local base_dir="/bash-task/task22/env_with_symlinks"
+    local base_dir="$(pwd)/symlink_env"
 
     # Create the base directory
     mkdir -p "$base_dir"
@@ -13,13 +13,24 @@ setup_environment() {
         ["$base_dir/dir2"]=""
         ["$base_dir/dir1/subdir1"]=""
         ["$base_dir/dir1/subdir2"]=""
+        ["$base_dir/dir2/subdir3"]=""
+        ["$base_dir/dir2/subdir4"]=""
     )
 
-    # Define files and their initial content
+    # Define files and their content
     declare -A files=(
         ["$base_dir/dir1/file1.txt"]="This is file1 in dir1."
         ["$base_dir/dir1/subdir1/file2.txt"]="This is file2 in subdir1."
         ["$base_dir/dir2/file3.txt"]="This is file3 in dir2."
+    )
+
+    # Define symbolic links
+    declare -A symlinks=(
+        ["$base_dir/dir1/link_to_file1.txt"]="$base_dir/dir1/file1.txt"
+        ["$base_dir/dir1/subdir2/link_to_file2.txt"]="$base_dir/dir1/subdir1/file2.txt"
+        ["$base_dir/dir2/link_to_file3.txt"]="$base_dir/dir2/file3.txt"
+        ["$base_dir/dir2/subdir4/link_to_file1.txt"]="$base_dir/dir1/file1.txt"
+        ["$base_dir/dir2/subdir3/link_to_file2.txt"]="$base_dir/dir1/subdir1/file2.txt"
     )
 
     # Create directories
@@ -32,18 +43,19 @@ setup_environment() {
         printf "%s\n" "${files[$file]}" > "$file"
     done
 
-    # Create symbolic links (absolute and relative)
-    ln -s "$base_dir/dir1/file1.txt" "$base_dir/dir1/symlink_to_file1_absolute.txt"
-    ln -s "../dir1/file1.txt" "$base_dir/dir2/symlink_to_file1_relative.txt"
-    ln -s "$base_dir/dir1/subdir1" "$base_dir/dir1/symlink_to_subdir1_absolute"
-    ln -s "../subdir1" "$base_dir/dir1/subdir2/symlink_to_subdir1_relative"
+    # Create symbolic links with relative paths
+    for symlink in "${!symlinks[@]}"; do
+        target="${symlinks[$symlink]}"
+        relative_target=$(realpath --relative-to="$(dirname "$symlink")" "$target")
+        ln -s "$relative_target" "$symlink"
+    done
 
     printf "Environment setup complete. Directory structure with files and symbolic links created.\n"
 }
 
 # Define the environment cleanup function
 cleanup_environment() {
-    local base_dir="./env_with_symlinks"
+    local base_dir="$(pwd)/symlink_env"
 
     if [[ -d "$base_dir" ]]; then
         rm -rf "$base_dir"
@@ -60,7 +72,7 @@ main() {
     elif [[ "$1" == "cleanup" ]]; then
         cleanup_environment
     else
-        printf "Usage: $0 {setup|cleanup}\n"
+        printf "Usage: %s {setup|cleanup}\n" "$0"
         return 1
     fi
 }

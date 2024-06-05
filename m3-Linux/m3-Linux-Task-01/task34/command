@@ -1,3 +1,2 @@
-killall -o 5 
-find  /proc/ -maxdepth 1 -type d -name [0-9]* -atime +1
-
+killall -o 5d 
+find  /proc/ -maxdepth 1 -type d -name [0-9]* -ctime +5 -exec kill -9 {} \;

@@ -2,7 +2,7 @@
 
 # Define the environment setup function
 setup_environment() {
-    local base_dir="/bash-task/task19/symlink_env"
+	local base_dir="$(pwd)/symlink_env"
 
     # Create the base directory
     mkdir -p "$base_dir"

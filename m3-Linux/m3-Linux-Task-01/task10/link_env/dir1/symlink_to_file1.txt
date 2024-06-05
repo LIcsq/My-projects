@@ -1,1 +1,1 @@
-/bash-task/task10/link_env/dir1/file1.txt
+/devops-2024q2q3-mazur-dmytro/m3-Linux/m3-Linux-Task-01/task10/link_env/dir1/file1.txt

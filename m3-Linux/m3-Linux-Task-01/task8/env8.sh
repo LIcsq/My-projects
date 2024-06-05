@@ -2,7 +2,7 @@
 
 # Define the environment setup function
 setup_environment() {
-    local base_dir="/bash-task/task8/hardlink_env"
+    local base_dir="$(pwd)/hardlink_env"
 
     # Create the base directory
     mkdir -p "$base_dir"
@@ -26,11 +26,11 @@ setup_environment() {
 
     # Define hard links
     declare -A hardlinks=(
-        ["$base_dir/dir1/hardlink_to_file1.txt"]="$base_dir/dir1/file1.txt"
-        ["$base_dir/dir1/subdir2/hardlink_to_file2.txt"]="$base_dir/dir1/subdir1/file2.txt"
-        ["$base_dir/dir2/hardlink_to_file3.txt"]="$base_dir/dir2/file3.txt"
-        ["$base_dir/dir2/subdir4/hardlink_to_file1.txt"]="$base_dir/dir1/file1.txt"
-        ["$base_dir/dir2/subdir3/hardlink_to_file2.txt"]="$base_dir/dir1/subdir1/file2.txt"
+        ["$base_dir/dir1/link_to_file1.txt"]="$base_dir/dir1/file1.txt"
+        ["$base_dir/dir1/subdir2/link_to_file2.txt"]="$base_dir/dir1/subdir1/file2.txt"
+        ["$base_dir/dir2/link_to_file3.txt"]="$base_dir/dir2/file3.txt"
+        ["$base_dir/dir2/subdir4/link_to_file1.txt"]="$base_dir/dir1/file1.txt"
+        ["$base_dir/dir2/subdir3/link_to_file2.txt"]="$base_dir/dir1/subdir1/file2.txt"
     )
 
     # Create directories
@@ -53,7 +53,7 @@ setup_environment() {
 
 # Define the environment cleanup function
 cleanup_environment() {
-    local base_dir="./hardlink_env"
+    local base_dir="$(pwd)/hardlink_env"
 
     if [[ -d "$base_dir" ]]; then
         rm -rf "$base_dir"
@@ -70,7 +70,7 @@ main() {
     elif [[ "$1" == "cleanup" ]]; then
         cleanup_environment
     else
-        printf "Usage: $0 {setup|cleanup}\n"
+        printf "Usage: %s {setup|cleanup}\n" "$0"
         return 1
     fi
 }

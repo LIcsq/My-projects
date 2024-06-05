@@ -2,7 +2,7 @@
 
 # Define the environment setup function
 setup_environment() {
-    local base_dir="/bash-task/task11/link_env"
+	local base_dir="$(pwd)/link_env"
 
     # Create the base directory
     mkdir -p "$base_dir"
