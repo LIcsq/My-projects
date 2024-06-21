@@ -1,0 +1,1 @@
+find /etc/NetworkManager/system-connections/ -type f -exec grep -oP 'address1=\K[^\/]*' {} \; 

@@ -1,0 +1,1 @@
+sudo -u test find script_environment/ -type f -executable -exec grep -H -T #! {} \;

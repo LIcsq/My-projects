@@ -1,0 +1,1 @@
+find script_environment/ -type d -exec mkdir -p new_dir/{} \;

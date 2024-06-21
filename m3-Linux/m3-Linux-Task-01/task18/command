@@ -1,0 +1,1 @@
+cat symlink_environment/file_list.txt | while read src dest; do ln -s "$(realpath --relative-to="$(dirname "$dest")" "$src")" "$(dirname "$dest")/new_$(basename "$dest")"; done 

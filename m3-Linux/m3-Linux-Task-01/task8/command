@@ -1,0 +1,1 @@
+find  hardlink_env/  -samefile hardlink_env/dir1/file1.txt

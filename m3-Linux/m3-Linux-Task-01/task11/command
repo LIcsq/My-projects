@@ -1,0 +1,1 @@
+find link_env/ -name file1.txt | xargs -I {} sudo bash -c find -L -samefile {} -delete 

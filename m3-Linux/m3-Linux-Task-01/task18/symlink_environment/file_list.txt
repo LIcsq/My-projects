@@ -1,0 +1,5 @@
+./symlink_environment/dir3/file3.txt ./symlink_environment/links/link_to_file3.txt
+./symlink_environment/dir2/file2.txt ./symlink_environment/links/link_to_file2.txt
+./symlink_environment/dir1/file1.txt ./symlink_environment/links/link_to_file1.txt
+./symlink_environment/dir5/file5.txt ./symlink_environment/links/link_to_file5.txt
+./symlink_environment/dir4/file4.txt ./symlink_environment/links/link_to_file4.txt

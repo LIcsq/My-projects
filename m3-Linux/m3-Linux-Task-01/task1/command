@@ -1,0 +1,1 @@
+cut -d: -f1,3 /etc/passwd | while IFS=: read -r name gid; do if [ $gid -lt 1000 ]; then echo $name:$gid; fi; done  > file.txt 

@@ -1,0 +1,1 @@
+ip -o link show | grep -Eo '^[0-9]+: [^:]+|link/ether [^ ]+' | xargs -n2

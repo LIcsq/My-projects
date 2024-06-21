@@ -1,0 +1,1 @@
+diff -r --ignore-file-name-case -c2 env1/ env2/
