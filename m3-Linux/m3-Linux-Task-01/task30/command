@@ -1,0 +1,1 @@
+cut -d: -f1,3 /etc/passwd | while IFS=: read -r name gid; do if [ $gid -gt 1000 ]; then echo "$name:$gid"; fi; done | sort -t: -k2 -n -r | cut -d: -f1 

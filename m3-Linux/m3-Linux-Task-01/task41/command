@@ -1,0 +1,7 @@
+file_path="config_environment/config.cfg"
+file_dir=$(dirname "$file_path")
+echo "Directory: $file_dir"
+file_name=$(basename "$file_path" | cut -d. -f1)
+echo "File Name: $file_name"
+file_ext="${file_path##*.}"
+echo "File Extension: $file_ext"

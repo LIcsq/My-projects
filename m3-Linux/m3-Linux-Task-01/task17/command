@@ -1,0 +1,1 @@
+ln -sf /bash-task/task17/link_env/dir1/file1.txt link_env/dir1/symlink_to_file3.txt

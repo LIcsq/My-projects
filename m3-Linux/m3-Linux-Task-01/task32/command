@@ -1,0 +1,1 @@
+cat /etc/shells | xargs -I {} bash -c grep {} /etc/passwd | cut -d: -f1

@@ -1,0 +1,1 @@
+cat hash_environment/file_hashes.txt | xargs -n 2 bash -c 'var1=$0; var2=$1; touch $var1; echo $var2 > $var1'

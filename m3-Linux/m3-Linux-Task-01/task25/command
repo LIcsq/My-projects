@@ -1,0 +1,6 @@
+tar -v -x testfile.txt -f archive_env/archive.tar -C /tmp
+tar -zv  -x testfile.txt -f archive_env/archive.tar.gz -C /tmp
+tar -Zv -x testfile.txt -f archive_env/archive.tar.Z -C /tmp
+tar -jv -x testfile.txt -f archive_env/archive.tar.bz2 -C /tmp
+tar -Jv  -x testfile.txt -f  archive_env/archive.tar.xz -C /tmp
+tar -v -x testfile.txt --lzma -f archive_env/archive.tar.lzma -C /tmp

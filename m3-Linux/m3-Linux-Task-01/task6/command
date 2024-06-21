@@ -1,0 +1,2 @@
+find duplicate_env/ -type f -exec stat --format=%s %n {} + | sort -n | while read siz
+e filename; do md5sum $filename ; done | uniq -d -w 32 

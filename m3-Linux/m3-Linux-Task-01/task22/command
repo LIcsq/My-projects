@@ -1,0 +1,1 @@
+find symlink_env/ -type l | xargs -I {} sh -c ln -sf /devops-2024q2q3-mazur-dmytro/m3-Linux/m3-Linux-Task-01/task22/{} {} 

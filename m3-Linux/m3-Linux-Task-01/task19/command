@@ -1,0 +1,1 @@
+rsync -rl --delete symlink_env/ symlink_env_rsync/

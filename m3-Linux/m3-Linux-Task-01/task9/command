@@ -1,0 +1,2 @@
+ls -i link_env/dir1/file1.txt | cut -d ' ' -f 1 | xargs find link_env/ -inum 
+

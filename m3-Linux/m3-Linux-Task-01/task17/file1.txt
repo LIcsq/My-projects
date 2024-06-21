@@ -1,0 +1,1 @@
+link_env/dir2/symbol_link_to_file1.txt

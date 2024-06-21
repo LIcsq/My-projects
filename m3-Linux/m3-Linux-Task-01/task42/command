@@ -1,0 +1,1 @@
+find symlink_env/ -type f -name *.txt -size 1b -delete 

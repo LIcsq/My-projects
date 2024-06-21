@@ -1,0 +1,1 @@
+ip -f inet addr show | grep -E '^[0-9]+:|inet ' | xargs -L2 | grep -Eo '^[^ ]+|inet [^/]*' | xargs -L2 | xargs -n2 echo

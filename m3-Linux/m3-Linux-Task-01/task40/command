@@ -1,0 +1,1 @@
+openssl x509 -in ssl_environment/example.com.pem -noout -text | grep -A 1 "Subject Alternative Name" | grep "DNS:" | sed s/DNS://g | tr , n 

@@ -1,0 +1,2 @@
+grep -E '(/sbin/nologin|/bin/false)' /etc/passwd | cut -d: -f1
+grep -E '(/bin/bash)' /etc/passwd | cut -d: -f1
